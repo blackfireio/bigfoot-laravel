@@ -18,6 +18,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $users = User::factory(10)->create();
+        /** @var BigFootSighting $sightings */
+        $sightings = BigFootSighting::factory(200)->setUsers($users)->create();
+        /** @var Comment $comments */
+        $comments = Comment::factory(4000)
+            ->setUsers($users)
+            ->setSightings($sightings)
+            ->create();
     }
 }
