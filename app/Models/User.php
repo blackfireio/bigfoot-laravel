@@ -82,4 +82,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class, 'owner_id');
     }
+
+    public function avatarUrl(): string
+    {
+        return sprintf('https://avatars.dicebear.com/4.5/api/human/%s.svg?mood[]=happy', $this->email);
+    }
 }
