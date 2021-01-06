@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource('sightings', SightingsController::class)->only(['index', 'show']);
+
+Route::view('/about', 'about')->name('about');
+
 Route::get('/', function () {
     return view('welcome');
 });
