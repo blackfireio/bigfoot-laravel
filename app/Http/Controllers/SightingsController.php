@@ -16,8 +16,8 @@ class SightingsController extends Controller
         return view('sightings.list', ['sightings' => $sightings]);
     }
 
-    public function show($id)
+    public function show(BigFootSighting $sighting)
     {
-        return view('sightings.view', ['sighting' => $id]);
+        return view('sightings.view', ['sighting' => $sighting]);
     }
 }
