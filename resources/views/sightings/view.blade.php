@@ -1,4 +1,3 @@
-@inject('activityHelper', 'App\BigFoot\UserActivityHelper')
 <x-app-layout>
     <x-slot name="title">{{ $sighting->title }} | BigFoot</x-slot>
     <x-slot name="slot">
