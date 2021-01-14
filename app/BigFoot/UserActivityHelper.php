@@ -2,6 +2,7 @@
 
 namespace App\BigFoot;
 
+use App\Models\Comment;
 use App\Models\User;
 
 class UserActivityHelper
@@ -32,14 +33,9 @@ class UserActivityHelper
 
     private function countRecentCommentsForUser(User $user): int
     {
-        $commentCount = 0;
         $recentDate = new \DateTimeImmutable('-3 months');
-        foreach ($user->comments as $comment) {
-            if ($comment->created_at > $recentDate) {
-                ++$commentCount;
-            }
-        }
-
-        return $commentCount;
+        return Comment::whereOwnerId($user->id)
+            ->where('created_at', '>', $recentDate)
+            ->count();
     }
 }
