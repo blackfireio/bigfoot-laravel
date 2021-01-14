@@ -4,6 +4,7 @@ namespace App\BigFoot;
 
 use App\Models\Comment;
 use App\Models\User;
+use Illuminate\Support\Facades\Cache;
 
 class UserActivityHelper
 {
@@ -13,6 +14,20 @@ class UserActivityHelper
     }
 
     public function getUserActivityText(User $user): string
+    {
+        $key = sprintf('user_activity_text_%s', $user->id);
+        $activityText = Cache::remember($key, 3600, function () use ($user) {
+            return $this->calculateActivityText($user);
+        });
+
+        return $activityText;
+    }
+
+    /**
+     * @param User $user
+     * @return string
+     */
+    private function calculateActivityText(User $user): string
     {
         $commentCount = $this->countRecentCommentsForUser($user);
 
