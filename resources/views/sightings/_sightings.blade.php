@@ -9,7 +9,7 @@
         <time class="table-content" datetime="{{ $sighting->created_at->format('Y-m-d H:i') }}">{{ $sighting->created_at->longRelativeDiffForHumans('now') }}</time>
     </td>
     <td>
-        <a class="text-white table-content text-center" href="{{ route('sightings.show', ['sighting' => $sighting]) }}">{{ $sighting->comments->count() }}</a>
+        <a class="text-white table-content text-center" href="{{ route('sightings.show', ['sighting' => $sighting]) }}">{{ $sighting->comments_count }}</a>
     </td>
 </tr>
 @endforeach

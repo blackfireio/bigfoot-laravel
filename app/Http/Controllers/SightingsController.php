@@ -9,7 +9,8 @@ class SightingsController extends Controller
 {
     public function index()
     {
-        $sightings = BigFootSighting::limit(50)
+        $sightings = BigFootSighting::withCount('comments')
+            ->limit(50)
             ->orderBy('created_at', 'desc')
             ->get();
 
